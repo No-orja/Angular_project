@@ -1,28 +1,20 @@
-<div class="cart-item-child">
+<div class="cart-item">
   <div class="item-image">
     <img [src]="product.url" [alt]="product.name" />
   </div>
 
   <div class="item-info">
     <h2 class="item-name">{{ product.name }}</h2>
-
-    <p class="item-price">
-      {{ product.price | currency : 'USD' : 'symbol' }}
-    </p>
+    <p class="item-price">{{ product.price | currency:'USD' }}</p>
 
     <div class="item-qty">
       <label>Amount</label>
-      <input
-        type="number"
-        min="1"
-        [(ngModel)]="quantity"
-        (ngModelChange)="onQtyChange()"
-      />
+      <input type="number" min="1" [(ngModel)]="quantity" (ngModelChange)="onQtyChange()" />
     </div>
   </div>
 
   <div class="item-line-total">
-    {{ product.price * quantity | currency : 'USD' : 'symbol' }}
+    {{ product.price * quantity | currency:'USD' }}
   </div>
 
   <button class="remove-btn" (click)="onDelete()">Remove</button>

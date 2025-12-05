@@ -1,15 +1,16 @@
 <div class="cart-wrapper">
   <div class="cart-container" *ngIf="items.length; else emptyCart">
+
     <div class="cart-items">
       <h1 class="cart-title">Cart</h1>
+
       <app-cart-item
         *ngFor="let item of items"
         [product]="item.product"
         [quantity]="item.quantity"
         (delete)="removeItem($event)"
         (quantityChange)="onQuantityChange()"
-      >
-      </app-cart-item>
+      ></app-cart-item>
     </div>
 
     <div class="cart-summary">
@@ -22,31 +23,23 @@
 
       <div class="summary-row total-row">
         <span>Total</span>
-        <span>{{ total | currency : 'USD' : 'symbol' }}</span>
+        <span>{{ total | currency:'USD' }}</span>
       </div>
 
       <form #checkoutForm="ngForm" (ngSubmit)="onSubmit(checkoutForm)" class="checkout-form">
         <label>Full name</label>
-        <input
-          name="fullName"
-          [(ngModel)]="fullName"
-          required
-          minlength="3"
-          #fullNameCtrl="ngModel"
-        />
+        <input name="fullName" [(ngModel)]="fullName" required minlength="3" #fullNameCtrl="ngModel" />
 
         <div class="error" *ngIf="checkoutForm.submitted && fullNameCtrl.errors">
-          <small *ngIf="fullNameCtrl.errors['required']"> Full name is required. </small>
-          <small *ngIf="fullNameCtrl.errors['minlength']">
-            Name must be at least 3 characters.
-          </small>
+          <small *ngIf="fullNameCtrl.errors['required']">Full name is required.</small>
+          <small *ngIf="fullNameCtrl.errors['minlength']">Name must be at least 3 characters.</small>
         </div>
 
         <label>Address</label>
         <input name="address" [(ngModel)]="address" required #addressCtrl="ngModel" />
 
         <div class="error" *ngIf="checkoutForm.submitted && addressCtrl.errors">
-          <small *ngIf="addressCtrl.errors['required']"> Address is required. </small>
+          <small *ngIf="addressCtrl.errors['required']">Address is required.</small>
         </div>
 
         <label>Credit card number</label>
@@ -61,9 +54,9 @@
         />
 
         <div class="error" *ngIf="checkoutForm.submitted && cardCtrl.errors">
-          <small *ngIf="cardCtrl.errors['required']"> Credit card number is required. </small>
-          <small *ngIf="cardCtrl.errors['pattern']"> Card number must contain digits only. </small>
-          <small *ngIf="cardCtrl.errors['minlength']"> Credit card must be 16 digits. </small>
+          <small *ngIf="cardCtrl.errors['required']">Credit card number is required.</small>
+          <small *ngIf="cardCtrl.errors['pattern']">Card number must contain digits only.</small>
+          <small *ngIf="cardCtrl.errors['minlength']">Credit card must be 16 digits.</small>
         </div>
 
         <button type="submit" class="checkout-btn">Checkout</button>
@@ -75,7 +68,7 @@
 
   <ng-template #emptyCart>
     <div class="empty-cart">
-      <img src="assets/images/empty-cart.png" alt="" />
+      <img src="assets/images/empty-cart.png" />
       <h2>Your cart is empty</h2>
       <a routerLink="/products">Back to product list</a>
     </div>
