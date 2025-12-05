@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "name": "Red T-Shirt",
+    "price": 49.99,
+    "description": "Comfortable red t-shirt made of 100% cotton.",
+    "url": "assets/images/09fd77e577213be79df0b0a882a4b1f7.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Blue Jeans",
+    "price": 129.5,
+    "description": "Classic blue denim jeans with slim fit.",
+    "url": "assets/images/37ba65f244299546057f207e4bd8c923.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Sneakers",
+    "price": 199,
+    "description": "Lightweight sneakers perfect for everyday wear.",
+    "url": "assets/images/881a04d5ae9ac186aeabae42a3c89420.jpg"
+  }
+]

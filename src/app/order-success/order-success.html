@@ -1,0 +1,21 @@
+<div class="success-wrapper">
+  <div class="success-card">
+    <h1>Success! 🎉</h1>
+    <p>
+      Thank you, <strong>{{ fullName || 'customer' }}</strong>!
+    </p>
+    <p>
+      Your
+      <strong>{{ total | currency : 'USD' : 'symbol' }}</strong>
+      order is confirmed.
+    </p>
+
+    <p class="note">
+      Please allow 1–3 business day(s) for shipping.
+    </p>
+
+    <a routerLink="/products" class="button">
+      Back to product list
+    </a>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="details-container" *ngIf="product">
+
+  <div class="details-wrapper">
+    
+    <div class="image-box">
+      <img [src]="product.url" [alt]="product.name">
+    </div>
+
+    <div class="info-box">
+      <h1 class="title">{{ product.name }}</h1>
+
+      <div class="price">
+        {{ product.price | currency:'USD':'symbol' }}
+      </div>
+
+      <p class="description">
+        {{ product.description }}
+      </p>
+
+      <label class="quantity-label">Quantity</label>
+      <select [(ngModel)]="selectedQuantity" class="quantity-select">
+        <option *ngFor="let q of quantities" [value]="q">{{ q }}</option>
+      </select>
+<br>
+      <button class="add-btn" (click)="addToCart()">Add to cart</button>
+      <br>
+      <a routerLink="/" class="back-link">
+        ← Back to products list
+      </a>
+    </div>
+
+  </div>
+</div>

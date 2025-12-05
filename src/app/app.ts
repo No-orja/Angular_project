@@ -1,12 +1,19 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterModule, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { CartService } from './services/cart.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css'],
+  imports: [
+    CommonModule,
+    RouterModule,
+    RouterOutlet
+  ],
 })
-export class App {
-  protected readonly title = signal('mystore');
+export class AppComponent {
+  constructor(public cartService: CartService) {}
 }

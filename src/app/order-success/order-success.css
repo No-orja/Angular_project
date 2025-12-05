@@ -1,0 +1,26 @@
+.success-container {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+  padding: 40px;
+}
+
+.success-icon {
+  font-size: 80px;
+  color: #28a745;
+}
+
+.success-msg {
+  font-size: 22px;
+  margin: 15px 0;
+}
+
+.back-btn {
+  margin-top: 20px;
+  padding: 12px 20px;
+  background: #007bff;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+}

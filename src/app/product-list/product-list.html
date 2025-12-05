@@ -1,0 +1,26 @@
+<div class="page">
+  <section class="product-grid">
+    <article class="product-card" *ngFor="let product of products" (click)="openDetails(product.id)">
+      
+      <div class="product-image-wrapper">
+        <img class="product-image" [src]="product.url" [alt]="product.name">
+      </div>
+
+      <div class="product-body">
+        <h2 class="product-title">{{ product.name }}</h2>
+        <p class="product-description">{{ product.description }}</p>
+      </div>
+
+      <div class="product-footer">
+        <div class="product-price">
+          {{ product.price | currency:'USD':'symbol' }}
+        </div>
+
+        <button class="button" (click)="onAddToCart(product, $event)">
+          Add to Cart
+        </button>
+      </div>
+
+    </article>
+  </section>
+</div>
