@@ -1,76 +1,98 @@
-MyStore – Angular Project
+📦 MyStore – Angular Project
 
-This project is a simple e-commerce frontend built with Angular, following the Udacity Full Stack JavaScript Nanodegree requirements.
-The application allows users to browse products, view details, add items to a cart, and complete a mock checkout flow.
+This project is a simple e-commerce frontend built with Angular, created as part of the Udacity Full Stack JavaScript Nanodegree.
+The application allows users to browse products, view detailed information, add items to the cart, update quantities, and complete a mock checkout flow.
 
-🚀 Features:
+🚀 Features
+1️⃣ Product Listing
 
-1. Product Listing
 Displays all products from a local JSON file.
-Stylish responsive grid layout.
-Each product shows image, title, price, and description preview.
-“Add to Cart” button included.
+Responsive grid layout with images, names, and prices.
+Each product includes an “Add to Cart” button.
 
-2. Product Details Page
-Displays full product information.
-Quantity selection (1–10).
-Add selected quantity to cart.
-Navigation back to product list.
+2️⃣ Product Details Page
+Shows full product information (image, name, description, price).
+User can select quantity (1–10).
+Adds selected quantity to the cart.
 
-3. Shopping Cart
-View all selected products.
-Update quantities.
-Displays subtotal and total.
-Proceed to checkout.
+3️⃣ Shopping Cart
+Shows all items added by the user.
+Quantities can be updated and the total updates instantly.
+Items can be removed from the cart with feedback.
+Displays total cost and number of items.
 
-4. Order Success Page
-Simple confirmation screen after checkout.
+4️⃣ Checkout Form
+Form validation using Angular FormsModule.
+Validates:
+Full name (required, min length 3)
+Address (required)
+Credit card number (required, numbers only, 16 digits)
+After successful submission, cart is cleared and user is redirected.
 
-📦 Project Structure
+5️⃣ Order Success Page
+Confirmation page showing order completion details.
+
+🧩 Component Architecture
+The application is built using Angular Standalone Components, and follows Udacity’s requirements for component interaction:
+✔ Parent → Child communication
+Using @Input to pass item data into the cart-item component.
+✔ Child → Parent communication
+Using @Output + EventEmitter to notify the cart component when:
+An item quantity changes
+An item is removed
+✔ Sibling communication
+Implemented using Angular Services, specifically the CartService, which manages:
+Cart items
+Adding/removing products
+Total price calculation
+This ensures a clean and scalable architecture.
+
+📁 Project Structure
 src/
 │── app/
 │   ├── product-list/
 │   ├── product-details/
 │   ├── cart/
+│   │    ├── cart.component.ts
+│   │    ├── cart-item.component.ts   ← (child component)
 │   ├── order-success/
 │   ├── models/
 │   └── services/
+│       └── cart.service.ts
 │
 │── assets/
 │   ├── data.json
 │   └── images/
 
-⚙️ How to Run the Project:
-
-1. Install dependencies
+⚙️ How to Run the Project
+Install dependencies:
 npm install
 
-2. Start the development server
+Start the development server:
 ng serve --port 3000
 
-3. Open in browser
+
+Open in browser:
 http://localhost:3000/
 
-📁 Data Source
-
-All products are fetched from:
+📄 Data Source
+Products are loaded from:
 src/assets/data.json
 
-
-Each product contains:
+Example product object:
 {
-  "id": number,
-  "name": string,
-  "price": number,
-  "description": string,
-  "url": string
+  "id": 1,
+  "name": "Sample Product",
+  "price": 20.5,
+  "description": "High-quality product description.",
+  "url": "assets/images/product1.webp"
 }
 
 🛠 Technologies Used
 Angular 18 (Standalone Components)
 TypeScript
-HTML & CSS
 Angular Router
-Angular Forms Module
+Angular Forms
+HTML / CSS
 
 👨‍💻 Author: Developed by Noor Jaber

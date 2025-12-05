@@ -1,41 +1,15 @@
 <div class="cart-wrapper">
   <div class="cart-container" *ngIf="items.length; else emptyCart">
-
     <div class="cart-items">
       <h1 class="cart-title">Cart</h1>
-
-      <div class="cart-item" *ngFor="let item of items">
-        <div class="item-image">
-          <img [src]="item.product.url" [alt]="item.product.name" />
-        </div>
-
-        <div class="item-info">
-          <h2 class="item-name">{{ item.product.name }}</h2>
-          <p class="item-price">
-            {{ item.product.price | currency : 'USD' : 'symbol' }}
-          </p>
-
-          <div class="item-qty">
-            <label>Amount</label>
-            <input
-              type="number"
-              [(ngModel)]="item.quantity"
-              (ngModelChange)="onQuantityChange()"
-              min="1"
-              name="qty-{{ item.product.id }}"
-            />
-          </div>
-        </div>
-
-        <div class="item-line-total">
-          <span>
-            {{
-              (item.product.price * item.quantity) |
-              currency : 'USD' : 'symbol' : '1.2-2'
-            }}
-          </span>
-        </div>
-      </div>
+      <app-cart-item
+        *ngFor="let item of items"
+        [product]="item.product"
+        [quantity]="item.quantity"
+        (delete)="removeItem($event)"
+        (quantityChange)="onQuantityChange()"
+      >
+      </app-cart-item>
     </div>
 
     <div class="cart-summary">
@@ -51,11 +25,7 @@
         <span>{{ total | currency : 'USD' : 'symbol' }}</span>
       </div>
 
-      <form
-        #checkoutForm="ngForm"
-        (ngSubmit)="onSubmit(checkoutForm)"
-        class="checkout-form"
-      >
+      <form #checkoutForm="ngForm" (ngSubmit)="onSubmit(checkoutForm)" class="checkout-form">
         <label>Full name</label>
         <input
           name="fullName"
@@ -64,26 +34,19 @@
           minlength="3"
           #fullNameCtrl="ngModel"
         />
+
         <div class="error" *ngIf="checkoutForm.submitted && fullNameCtrl.errors">
-          <small *ngIf="fullNameCtrl.errors['required']">
-            Full name is required.
-          </small>
+          <small *ngIf="fullNameCtrl.errors['required']"> Full name is required. </small>
           <small *ngIf="fullNameCtrl.errors['minlength']">
             Name must be at least 3 characters.
           </small>
         </div>
 
         <label>Address</label>
-        <input
-          name="address"
-          [(ngModel)]="address"
-          required
-          #addressCtrl="ngModel"
-        />
+        <input name="address" [(ngModel)]="address" required #addressCtrl="ngModel" />
+
         <div class="error" *ngIf="checkoutForm.submitted && addressCtrl.errors">
-          <small *ngIf="addressCtrl.errors['required']">
-            Address is required.
-          </small>
+          <small *ngIf="addressCtrl.errors['required']"> Address is required. </small>
         </div>
 
         <label>Credit card number</label>
@@ -93,20 +56,17 @@
           required
           minlength="16"
           maxlength="16"
+          pattern="^[0-9]*$"
           #cardCtrl="ngModel"
         />
+
         <div class="error" *ngIf="checkoutForm.submitted && cardCtrl.errors">
-          <small *ngIf="cardCtrl.errors['required']">
-            Credit card number is required.
-          </small>
-          <small *ngIf="cardCtrl.errors['minlength']">
-            Invalid credit card number.
-          </small>
+          <small *ngIf="cardCtrl.errors['required']"> Credit card number is required. </small>
+          <small *ngIf="cardCtrl.errors['pattern']"> Card number must contain digits only. </small>
+          <small *ngIf="cardCtrl.errors['minlength']"> Credit card must be 16 digits. </small>
         </div>
 
-        <button type="submit" class="checkout-btn">
-          Checkout
-        </button>
+        <button type="submit" class="checkout-btn">Checkout</button>
       </form>
 
       <button class="clear-btn" (click)="clearCart()">Clear cart</button>
@@ -115,7 +75,7 @@
 
   <ng-template #emptyCart>
     <div class="empty-cart">
-      <img src="assets/images/empty-cart-eudzxdt3f49bo2oyjh77m.webp" alt="" />
+      <img src="assets/images/empty-cart.png" alt="" />
       <h2>Your cart is empty</h2>
       <a routerLink="/products">Back to product list</a>
     </div>

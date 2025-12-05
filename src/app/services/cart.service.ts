@@ -7,10 +7,8 @@ import { Product } from '../models/product';
 export class CartService {
   private items: Product[] = [];
 
-  addToCart(product: Product, quantity: number = 1): void {
-    for (let i = 0; i < quantity; i++) {
-      this.items.push(product);
-    }
+  addToCart(product: Product): void {
+    this.items.push(product);
   }
 
   getItems(): Product[] {
@@ -21,6 +19,13 @@ export class CartService {
     this.items = [];
   }
 
+  removeFromCart(productId: number): void {
+    this.items = this.items.filter((p) => p.id !== productId);
+  }
+
+  getTotal(): number {
+    return this.items.reduce((sum, p) => sum + p.price, 0);
+  }
   getItemsCount(): number {
     return this.items.length;
   }

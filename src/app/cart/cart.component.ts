@@ -4,6 +4,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { CartService } from '../services/cart.service';
 import { Product } from '../models/product';
+import { CartItemComponent } from './cart-item.component';
 
 interface CartItem {
   product: Product;
@@ -15,7 +16,7 @@ interface CartItem {
   standalone: true,
   templateUrl: './cart.html',
   styleUrls: ['./cart.css'],
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, CartItemComponent],
 })
 export class CartComponent implements OnInit {
   items: CartItem[] = [];
@@ -65,19 +66,23 @@ export class CartComponent implements OnInit {
     this.total = 0;
   }
 
+  removeItem(productId: number): void {
+    this.cartService.removeFromCart(productId);
+    alert('Item removed from cart');
+    this.loadCart();
+  }
+
   onSubmit(form: NgForm): void {
-    if (form.invalid || this.items.length === 0) {
-      return;
-    }
+    if (form.invalid || this.items.length === 0) return;
 
     const name = this.fullName;
-    const totalValue = this.total;
+    const finalTotal = this.total;
 
     this.clearCart();
     form.resetForm();
 
     this.router.navigate(['/success'], {
-      state: { fullName: name, total: totalValue },
+      state: { fullName: name, total: finalTotal },
     });
   }
 }
