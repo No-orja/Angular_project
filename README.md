@@ -1,59 +1,76 @@
-# Mystore
+MyStore – Angular Project
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.1.
+This project is a simple e-commerce frontend built with Angular, following the Udacity Full Stack JavaScript Nanodegree requirements.
+The application allows users to browse products, view details, add items to a cart, and complete a mock checkout flow.
 
-## Development server
+🚀 Features:
 
-To start a local development server, run:
+1. Product Listing
+Displays all products from a local JSON file.
+Stylish responsive grid layout.
+Each product shows image, title, price, and description preview.
+“Add to Cart” button included.
 
-```bash
-ng serve
-```
+2. Product Details Page
+Displays full product information.
+Quantity selection (1–10).
+Add selected quantity to cart.
+Navigation back to product list.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+3. Shopping Cart
+View all selected products.
+Update quantities.
+Displays subtotal and total.
+Proceed to checkout.
 
-## Code scaffolding
+4. Order Success Page
+Simple confirmation screen after checkout.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+📦 Project Structure
+src/
+│── app/
+│   ├── product-list/
+│   ├── product-details/
+│   ├── cart/
+│   ├── order-success/
+│   ├── models/
+│   └── services/
+│
+│── assets/
+│   ├── data.json
+│   └── images/
 
-```bash
-ng generate component component-name
-```
+⚙️ How to Run the Project:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+1. Install dependencies
+npm install
 
-```bash
-ng generate --help
-```
+2. Start the development server
+ng serve --port 3000
 
-## Building
+3. Open in browser
+http://localhost:3000/
 
-To build the project run:
+📁 Data Source
 
-```bash
-ng build
-```
+All products are fetched from:
+src/assets/data.json
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
+Each product contains:
+{
+  "id": number,
+  "name": string,
+  "price": number,
+  "description": string,
+  "url": string
+}
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+🛠 Technologies Used
+Angular 18 (Standalone Components)
+TypeScript
+HTML & CSS
+Angular Router
+Angular Forms Module
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+👨‍💻 Author: Developed by Noor Jaber
